@@ -1520,6 +1520,7 @@ struct rxvt_term : zero_initialized, rxvt_vars, rxvt_screen
   void scr_change_screen (int scrn);
   void scr_color (unsigned int color, int fgbg) NOTHROW;
 #if USE_24_BIT_COLOR
+  void scr_color_24 (unsigned int color, int fgbg) NOTHROW;
   void scr_color_rgb (unsigned int r, unsigned int g, unsigned int b, int fgbg) NOTHROW;
 #endif
   rxvt_color &lookup_color (unsigned int color, rxvt_color *table) NOTHROW;
