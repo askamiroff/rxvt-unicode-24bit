@@ -656,7 +656,6 @@ rxvt_color
         scr_colors[color] = new rxvt_color();
         char name[1+2*3];
         sprintf(name, "#%02x%02x%02x", (color >> 16) & 0xff, (color >> 8) & 0xff, color & 0xff);
-        printf("%s\n", name);
         scr_colors[color]->set(this, name);
     }
     return *scr_colors[color];

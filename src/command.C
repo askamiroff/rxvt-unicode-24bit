@@ -3999,6 +3999,14 @@ rxvt_term::process_sgr_mode (unsigned int nargs, const int *arg)
                 scr_color ((unsigned int) (minCOLOR + arg[i + 2]), Color_bg);
                 i += 2;
               }
+#if USE_24_BIT_COLOR
+            else if (nargs > i + 4 && arg[i + 1] == 2)
+              {
+                unsigned int r = arg[i + 2], g = arg[i + 3], b = arg[i + 4];
+                scr_color_rgb (r, g, b, Color_bg);
+                i += 4;
+              }
+#endif
             break;
           case 49:		/* default bg */
             scr_color (Color_bg, Color_bg);
