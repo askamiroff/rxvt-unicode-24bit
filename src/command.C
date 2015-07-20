@@ -3970,6 +3970,11 @@ rxvt_term::process_sgr_mode (unsigned int nargs, const int *arg)
                 scr_color ((unsigned int) (minCOLOR + arg[i + 2]), Color_fg);
                 i += 2;
               }
+            else if (nargs > i + 4 && arg[i + 1] == 2)
+              {
+                int r = arg[i + 2], g = arg[i + 3], b = arg[i + 4];
+                /* TODO: add 24-bit color support */
+              }
             break;
           case 39:		/* default fg */
             scr_color (Color_fg, Color_fg);
