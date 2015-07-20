@@ -253,8 +253,8 @@ CONFIGURE OPTIONS
 
     --enable-24-bit-color (default: off)
         Enable use of 24-bit colors through
-            SGR 38 ; 2 ; R ; G ; B ; m
-            SGR 48 ; 2 ; R ; G ; B ; m
+            SGR 38 ; 2 ; R ; G ; B  m
+            SGR 48 ; 2 ; R ; G ; B  m
 
         This switch should break termcap/terminfo compatibility to
         "TERM=rxvt-unicode-256color", and consequently set "TERM" to
