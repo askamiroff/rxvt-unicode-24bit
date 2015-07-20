@@ -1519,7 +1519,9 @@ struct rxvt_term : zero_initialized, rxvt_vars, rxvt_screen
   void scr_swap_screen () NOTHROW;
   void scr_change_screen (int scrn);
   void scr_color (unsigned int color, int fgbg) NOTHROW;
+#if USE_24_BIT_COLOR
   void scr_color_rgb (unsigned int r, unsigned int g, unsigned int b, int fgbg) NOTHROW;
+#endif
   void scr_rendition (int set, rend_t style) NOTHROW;
   void scr_add_lines (const wchar_t *str, int len, int minlines = 0) NOTHROW;
   void scr_backspace () NOTHROW;

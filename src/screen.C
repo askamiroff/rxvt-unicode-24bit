@@ -625,6 +625,7 @@ rxvt_term::scr_color (unsigned int color, int fgbg) NOTHROW
     rstyle = SET_BGCOLOR (rstyle, color);
 }
 
+#if USE_24_BIT_COLOR
 void
 rxvt_term::scr_color_rgb (unsigned int r, unsigned int g, unsigned int b, int fgbg) NOTHROW
 {
@@ -633,8 +634,8 @@ rxvt_term::scr_color_rgb (unsigned int r, unsigned int g, unsigned int b, int fg
     rstyle = SET_FGCOLOR (rstyle, color);
   else
     rstyle = SET_BGCOLOR (rstyle, color);
-  printf("%lld %lld %lld\n", color, GET_BASEFG(rstyle), fgcolor_of(rstyle));
 }
+#endif
 
 /* ------------------------------------------------------------------------- */
 /*
