@@ -713,6 +713,7 @@ enable_everything
 enable_assert
 enable_warnings
 enable_256_color
+enable_24_bit_color
 enable_unicode3
 enable_combining
 enable_xft
@@ -1386,6 +1387,7 @@ Optional Features:
   --enable-assert         enable assertions
   --enable-warnings       turn on g++ warnings
   --enable-256-color      enable 256-color support
+  --enable-24-bit-color   enable 24-bit color support
   --enable-unicode3       use 21 instead of 16 bits to represent unicode characters
   --enable-combining      enable composition of base and combining characters
   --enable-xft            enable xft support on systems that have it
@@ -4877,6 +4879,20 @@ $as_echo "#define USE_256_COLORS 1" >>confdefs.h
 
 fi
 
+support_24_bit_color=no
+# Check whether --enable-24-bit-color was given.
+if test "${enable_24_bit_color+set}" = set; then :
+  enableval=$enable_24_bit_color; if test x$enableval = xyes; then
+    support_24_bit_color=yes
+  fi
+fi
+
+if test x$support_24_bit_color = xyes; then
+
+$as_echo "#define USE_24_BIT_COLORS 1" >>confdefs.h
+
+fi
+
 # Check whether --enable-unicode3 was given.
 if test "${enable_unicode3+set}" = set; then :
   enableval=$enable_unicode3; if test x$enableval = xyes -o x$enableval = xno; then
@@ -6447,8 +6463,8 @@ if test x$support_pixbuf = xyes; then
   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for gdk-pixbuf-2.0" >&5
 $as_echo_n "checking for gdk-pixbuf-2.0... " >&6; }
   if test $PKG_CONFIG != no && $PKG_CONFIG --exists gdk-pixbuf-2.0; then
-    PIXBUF_CFLAGS="`$PKG_CONFIG gdk-pixbuf-2.0 --cflags`"
-    PIXBUF_LIBS="`$PKG_CONFIG gdk-pixbuf-2.0 --libs`"
+    PIXBUF_CFLAGS="`$PKG_CONFIG --cflags gdk-pixbuf-2.0`"
+    PIXBUF_LIBS="`$PKG_CONFIG --libs gdk-pixbuf-2.0`"
 
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: ok" >&5
 $as_echo "ok" >&6; }
@@ -6477,8 +6493,8 @@ if test x$support_startup_notification = xyes; then
   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for libstartup-notification-1.0" >&5
 $as_echo_n "checking for libstartup-notification-1.0... " >&6; }
   if test $PKG_CONFIG != no && $PKG_CONFIG --exists libstartup-notification-1.0; then
-    STARTUP_NOTIFICATION_CFLAGS="`$PKG_CONFIG libstartup-notification-1.0 --cflags`"
-    STARTUP_NOTIFICATION_LIBS="`$PKG_CONFIG libstartup-notification-1.0 --libs`"
+    STARTUP_NOTIFICATION_CFLAGS="`$PKG_CONFIG --cflags libstartup-notification-1.0`"
+    STARTUP_NOTIFICATION_LIBS="`$PKG_CONFIG --libs libstartup-notification-1.0`"
 
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: ok" >&5
 $as_echo "ok" >&6; }
@@ -6503,8 +6519,8 @@ if test x$support_frills = xyes; then
   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for xmu" >&5
 $as_echo_n "checking for xmu... " >&6; }
   if test $PKG_CONFIG != no && $PKG_CONFIG --exists xmu; then
-    XMU_CFLAGS="`$PKG_CONFIG xmu --cflags`"
-    XMU_LIBS="`$PKG_CONFIG xmu --libs`"
+    XMU_CFLAGS="`$PKG_CONFIG --cflags xmu`"
+    XMU_LIBS="`$PKG_CONFIG --libs xmu`"
 
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: ok" >&5
 $as_echo "ok" >&6; }
@@ -7541,8 +7557,8 @@ if test x$support_xft = xyes || test x$support_image = xyes; then
   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for xrender" >&5
 $as_echo_n "checking for xrender... " >&6; }
   if test $PKG_CONFIG != no && $PKG_CONFIG --exists xrender; then
-    XRENDER_CFLAGS="`$PKG_CONFIG xrender --cflags`"
-    XRENDER_LIBS="`$PKG_CONFIG xrender --libs`"
+    XRENDER_CFLAGS="`$PKG_CONFIG --cflags xrender`"
+    XRENDER_LIBS="`$PKG_CONFIG --libs xrender`"
 
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: ok" >&5
 $as_echo "ok" >&6; }
@@ -7583,8 +7599,8 @@ if test x$support_xft = xyes && test x$rxvt_have_xrender = xyes; then
   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for fontconfig xft" >&5
 $as_echo_n "checking for fontconfig xft... " >&6; }
   if test $PKG_CONFIG != no && $PKG_CONFIG --exists fontconfig xft; then
-    XFT_CFLAGS="`$PKG_CONFIG fontconfig xft --cflags`"
-    XFT_LIBS="`$PKG_CONFIG fontconfig xft --libs`"
+    XFT_CFLAGS="`$PKG_CONFIG --cflags fontconfig xft`"
+    XFT_LIBS="`$PKG_CONFIG --libs fontconfig xft`"
 
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: ok" >&5
 $as_echo "ok" >&6; }

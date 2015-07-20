@@ -9,8 +9,8 @@ CONFIGURE OPTIONS
 
     --enable-everything
         Add (or remove) support for all non-multichoice options listed in
-        "./configure --help", except for "--enable-assert" and
-        "--enable-256-color".
+        "./configure --help", except for "--enable-assert",
+        "--enable-256-color" and "--enable-24-bit-color".
 
         You can specify this and then disable options you do not like by
         *following* this with the appropriate "--disable-..." arguments, or
