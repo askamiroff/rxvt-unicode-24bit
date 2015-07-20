@@ -637,6 +637,13 @@ rxvt_term::scr_color_rgb (unsigned int r, unsigned int g, unsigned int b, int fg
 }
 #endif
 
+rxvt_color
+&rxvt_term::lookup_color (unsigned int color, rxvt_color *table) NOTHROW
+{
+  return table[color];
+}
+
+
 /* ------------------------------------------------------------------------- */
 /*
  * Change the rendition style for following text
@@ -1406,7 +1413,7 @@ rxvt_term::scr_erase_screen (int mode) NOTHROW
                           0, Row2Pixel (row - view_start),
                           (unsigned int)vt_width,
                           (unsigned int)Height2Pixel (num));
-          gcvalue.foreground = pix_colors[Color_fg];
+          gcvalue.foreground = lookup_color(Color_fg, pix_colors);
           XChangeGC (dpy, gc, GCForeground, &gcvalue);
         }
     }
@@ -1727,15 +1734,15 @@ rxvt_term::scr_rvideo_mode (bool on) NOTHROW
     {
       rvideo_state = on;
 
-      ::swap (pix_colors[Color_fg], pix_colors[Color_bg]);
+      ::swap (lookup_color(Color_fg, pix_colors), lookup_color(Color_bg, pix_colors));
 #ifdef HAVE_IMG
       if (bg_img == 0)
 #endif
-          XSetWindowBackground (dpy, vt, pix_colors[Color_bg]);
+          XSetWindowBackground (dpy, vt, lookup_color(Color_bg, pix_colors));
 
       XGCValues gcvalue;
-      gcvalue.foreground = pix_colors[Color_fg];
-      gcvalue.background = pix_colors[Color_bg];
+      gcvalue.foreground = lookup_color(Color_fg, pix_colors);
+      gcvalue.background = lookup_color(Color_bg, pix_colors);
       XChangeGC (dpy, gc, GCBackground | GCForeground, &gcvalue);
 
       scr_clear ();
@@ -2433,14 +2440,14 @@ rxvt_term::scr_refresh () NOTHROW
             {
               if (showcursor && focus && row == screen.cur.row
                   && IN_RANGE_EXC (col, cur_col, cur_col + cursorwidth))
-                XSetForeground (dpy, gc, pix_colors[ccol1]);
+                XSetForeground (dpy, gc, lookup_color(ccol1, pix_colors));
               else
 #if ENABLE_FRILLS
               if (ISSET_PIXCOLOR (Color_underline))
-                XSetForeground (dpy, gc, pix_colors[Color_underline]);
+                XSetForeground (dpy, gc, lookup_color(Color_underline, pix_colors));
               else
 #endif
-                XSetForeground (dpy, gc, pix_colors[fore]);
+                XSetForeground (dpy, gc, lookup_color(fore, pix_colors));
 
               XDrawLine (dpy, vt, gc,
                          xpixel, ypixel + font->ascent + 1,
@@ -2460,7 +2467,7 @@ rxvt_term::scr_refresh () NOTHROW
             scr_set_char_rend (ROW(screen.cur.row), cur_col, cur_rend);
           else if (oldcursor.row >= 0)
             {
-              XSetForeground (dpy, gc, pix_colors[ccol1]);
+              XSetForeground (dpy, gc, lookup_color(ccol1, pix_colors));
               if (cursor_type == 1)
                 XFillRectangle (dpy, vt, gc,
                                 Col2Pixel (cur_col),
@@ -2477,7 +2484,7 @@ rxvt_term::scr_refresh () NOTHROW
         }
       else if (oldcursor.row >= 0)
         {
-          XSetForeground (dpy, gc, pix_colors[ccol1]);
+          XSetForeground (dpy, gc, lookup_color(ccol1, pix_colors));
 
           XDrawRectangle (dpy, vt, gc,
                           Col2Pixel (cur_col),
@@ -2546,15 +2553,15 @@ rxvt_term::scr_recolor (bool refresh) NOTHROW
       else
 # endif
         {
-          XSetWindowBackground (dpy, parent, pix_colors[Color_border]);
+          XSetWindowBackground (dpy, parent, lookup_color(Color_border, pix_colors));
           XSetWindowBackgroundPixmap (dpy, vt, bg_img->pm);
         }
     }
   else
 #endif
     {
-      XSetWindowBackground (dpy, parent, pix_colors[Color_border]);
-      XSetWindowBackground (dpy, vt, pix_colors[Color_bg]);
+      XSetWindowBackground (dpy, parent, lookup_color(Color_border, pix_colors));
+      XSetWindowBackground (dpy, vt, lookup_color(Color_bg, pix_colors));
     }
 
   XClearWindow (dpy, parent);

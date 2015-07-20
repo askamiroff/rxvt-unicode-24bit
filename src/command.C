@@ -1844,11 +1844,11 @@ rxvt_term::update_fade_color (unsigned int idx, bool first_time)
   if (rs[Rs_fade])
     {
       if (!first_time)
-        pix_colors_focused [idx].free (this);
+        lookup_color(idx, pix_colors_focused).free (this);
 
       rgba c;
-      pix_colors [Color_fade].get (c);
-      pix_colors_focused [idx].fade (this, atoi (rs[Rs_fade]), pix_colors_unfocused [idx], c);
+      lookup_color(Color_fade, pix_colors).get (c);
+      lookup_color(idx, pix_colors_focused).fade (this, atoi (rs[Rs_fade]), lookup_color(idx, pix_colors_unfocused), c);
     }
 #endif
 }
@@ -3335,7 +3335,7 @@ rxvt_term::process_color_seq (int report, int color, const char *str, char resp)
   if (str[0] == '?' && !str[1])
     {
       rgba c;
-      pix_colors_focused[color].get (c);
+      lookup_color(color, pix_colors_focused).get (c);
 
 #if XFT
       if (c.a != rgba::MAX_CC)
@@ -3483,7 +3483,7 @@ rxvt_term::process_xterm_seq (int op, char *str, char resp)
           bool changed = false;
 
           if (ISSET_PIXCOLOR (Color_tint))
-            changed = root_effects.set_tint (pix_colors_focused [Color_tint]);
+            changed = root_effects.set_tint (lookup_color(Color_tint, pix_colors_focused));
 
           if (changed)
             update_background ();
