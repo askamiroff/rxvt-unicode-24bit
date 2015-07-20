@@ -3877,7 +3877,7 @@ rxvt_term::process_sgr_mode (unsigned int nargs, const int *arg)
 {
   unsigned int i;
   short rendset;
-  int rendstyle;
+  rend_t rendstyle;
 
   if (nargs == 0)
     {
@@ -3972,7 +3972,9 @@ rxvt_term::process_sgr_mode (unsigned int nargs, const int *arg)
               }
             else if (nargs > i + 4 && arg[i + 1] == 2)
               {
-                int r = arg[i + 2], g = arg[i + 3], b = arg[i + 4];
+                unsigned int r = arg[i + 2], g = arg[i + 3], b = arg[i + 4];
+                scr_color_rgb (r, g, b, Color_fg);
+                i += 4;
                 /* TODO: add 24-bit color support */
               }
             break;

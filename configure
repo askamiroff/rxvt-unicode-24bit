@@ -4889,7 +4889,7 @@ fi
 
 if test x$support_24_bit_color = xyes; then
 
-$as_echo "#define USE_24_BIT_COLORS 1" >>confdefs.h
+$as_echo "#define USE_24_BIT_COLOR 1" >>confdefs.h
 
 fi
 

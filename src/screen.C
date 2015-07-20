@@ -625,12 +625,23 @@ rxvt_term::scr_color (unsigned int color, int fgbg) NOTHROW
     rstyle = SET_BGCOLOR (rstyle, color);
 }
 
+void
+rxvt_term::scr_color_rgb (unsigned int r, unsigned int g, unsigned int b, int fgbg) NOTHROW
+{
+  unsigned int color = (r << 16) + (g << 8) + b;
+  if (fgbg == Color_fg)
+    rstyle = SET_FGCOLOR (rstyle, color);
+  else
+    rstyle = SET_BGCOLOR (rstyle, color);
+  printf("%lld %lld %lld\n", color, GET_BASEFG(rstyle), fgcolor_of(rstyle));
+}
+
 /* ------------------------------------------------------------------------- */
 /*
  * Change the rendition style for following text
  */
 void
-rxvt_term::scr_rendition (int set, int style) NOTHROW
+rxvt_term::scr_rendition (int set, rend_t style) NOTHROW
 {
   if (set)
     rstyle |= style;
