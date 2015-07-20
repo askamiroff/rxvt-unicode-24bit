@@ -354,9 +354,7 @@ struct mouse_event
 # define COLORTERMENVFULL COLORTERMENV
 #endif
 #ifndef TERMENV
-# if USE_24_BIT_COLOR
-#  define TERMENV        "rxvt-unicode-24bit"
-# elif USE_256_COLORS
+# if USE_256_COLORS
 #  define TERMENV        "rxvt-unicode-256color"
 # else
 #  define TERMENV        "rxvt-unicode"
