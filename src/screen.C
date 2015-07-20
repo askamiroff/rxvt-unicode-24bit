@@ -650,16 +650,14 @@ rxvt_color
 &rxvt_term::lookup_color (unsigned int color, rxvt_color *table) NOTHROW
 {
 #if USE_24_BIT_COLOR
-printf("LOOKUP_COLOR: ENTER\n");
   if (color >= TOTAL_COLORS) {
     color -= TOTAL_COLORS;
     if (scr_colors[color] == NULL) {
         scr_colors[color] = new rxvt_color();
-        char name[1+2*3];
+        char name[1+2*3+1];
         sprintf(name, "#%02x%02x%02x", (color >> 16) & 0xff, (color >> 8) & 0xff, color & 0xff);
         scr_colors[color]->set(this, name);
     }
-printf("LOOKUP_COLOR: EXIT\n");
     return *scr_colors[color];
   } else
 #endif
