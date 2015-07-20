@@ -1428,7 +1428,7 @@ rxvt_term::scr_erase_screen (int mode) NOTHROW
 
       if (mapped)
         {
-          gcvalue.foreground = pix_colors[bgcolor_of (rstyle)];
+          gcvalue.foreground = lookup_color(bgcolor_of (rstyle), pix_colors);
           XChangeGC (dpy, gc, GCForeground, &gcvalue);
           XFillRectangle (dpy, vt, gc,
                           0, Row2Pixel (row - view_start),
@@ -2592,7 +2592,7 @@ rxvt_term::scr_recolor (bool refresh) NOTHROW
       if (transparent)
         XSetWindowBackgroundPixmap (dpy, scrollBar.win, ParentRelative);
       else
-        XSetWindowBackground (dpy, scrollBar.win, pix_colors[scrollBar.color ()]);
+        XSetWindowBackground (dpy, scrollBar.win, lookup_color(scrollBar.color (), pix_colors));
       scrollBar.state = SB_STATE_IDLE;
       scrollBar.show (0);
     }

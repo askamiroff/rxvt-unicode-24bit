@@ -73,7 +73,7 @@ scrollBar_t::resize ()
                                  term->szHint.height,
                                  0,
                                  term->lookup_color(Color_fg, term->pix_colors),
-                                 term->pix_colors[color ()]);
+                                 term->lookup_color(color (), term->pix_colors));
       XDefineCursor (term->dpy, win, leftptr_cursor);
 
       XSelectInput (term->dpy, win,

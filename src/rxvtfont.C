@@ -1462,7 +1462,7 @@ rxvt_font_xft::draw (rxvt_drawable &d, int x, int y,
             }
           else
 #endif
-            XftDrawRect (d2, &term->pix_colors[bg >= 0 ? bg : Color_bg].c, 0, 0, w, h);
+            XftDrawRect (d2, &term->lookup_color(bg >= 0 ? bg : Color_bg, term->pix_colors).c, 0, 0, w, h);
 
           XftDrawGlyphSpec (d2, &term->lookup_color(fg, term->pix_colors).c, f, enc, ep - enc);
           XCopyArea (disp, d2, d, gc, 0, 0, w, h, x, y);
