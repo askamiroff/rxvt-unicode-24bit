@@ -626,7 +626,7 @@ rxvt_term::scr_color (unsigned int color, int fgbg) NOTHROW
 }
 
 #if USE_24_BIT_COLOR
-rxvt_color *scr_colors[1 << 24];
+static rxvt_color *scr_colors[1 << 24];
 
 void
 rxvt_term::scr_color_24 (unsigned int color, int fgbg) NOTHROW
@@ -650,6 +650,7 @@ rxvt_color
 &rxvt_term::lookup_color (unsigned int color, rxvt_color *table) NOTHROW
 {
 #if USE_24_BIT_COLOR
+printf("LOOKUP_COLOR: ENTER\n");
   if (color >= TOTAL_COLORS) {
     color -= TOTAL_COLORS;
     if (scr_colors[color] == NULL) {
@@ -658,6 +659,7 @@ rxvt_color
         sprintf(name, "#%02x%02x%02x", (color >> 16) & 0xff, (color >> 8) & 0xff, color & 0xff);
         scr_colors[color]->set(this, name);
     }
+printf("LOOKUP_COLOR: EXIT\n");
     return *scr_colors[color];
   } else
 #endif
