@@ -251,6 +251,20 @@ CONFIGURE OPTIONS
         dramatically when more than six fonts are in use by a terminal
         instance.
 
+    --enable-24-bit-color (default: off)
+        Enable use of 24-bit colors through
+            SGR 38 ; 2 ; R ; G ; B ; m
+            SGR 48 ; 2 ; R ; G ; B ; m
+
+        This switch should break termcap/terminfo compatibility to
+        "TERM=rxvt-unicode-256color", and consequently set "TERM" to
+        "rxvt-unicode-24bit" by default but there is no termcap/terminfo
+        for 24-bit color support
+
+        It also results in higher memory usage and can slow down urxvt
+        dramatically when more than six fonts are in use by a terminal
+        instance.
+
     --with-name=NAME (default: urxvt)
         Set the basename for the installed binaries, resulting in "urxvt",
         "urxvtd" etc.). Specify "--with-name=rxvt" to replace with "rxvt".
