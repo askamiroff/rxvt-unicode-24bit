@@ -834,7 +834,12 @@ rxvt_term::set_fonts ()
   delete fontset[0];
   fontset[0] = fs;
 
-  prop = (*fs)[rxvt_fontset::firstFont]->properties ();
+  rxvt_font *first_font = (*fs)[rxvt_fontset::firstFont];
+
+  first_font->ascent += lineSpace;
+
+  prop = first_font->properties ();
+  prop.height += lineSpace;
   prop.width = max (prop.width + letterSpace, 1);
 
   fs->set_prop (prop, false);
