@@ -789,6 +789,18 @@ MODULE = urxvt             PACKAGE = urxvt
 
 PROTOTYPES: ENABLE
 
+TYPEMAP: <<END
+rend_t T_UINT
+
+INPUT
+T_UINT
+  $var = ($type)SvUV($arg);
+
+OUTPUT
+T_UINT
+  sv_setuv($arg, (UV)$var);
+END
+
 BOOT:
 {
   sv_setsv (get_sv ("urxvt::LIBDIR",   1), newSVpvn (LIBDIR,   sizeof (LIBDIR)   - 1));
@@ -1069,43 +1081,43 @@ NOW ()
         OUTPUT:
         RETVAL
 
-int
-GET_BASEFG (int rend)
+rend_t
+GET_BASEFG (rend_t rend)
 	CODE:
         RETVAL = GET_BASEFG (rend);
 	OUTPUT:
         RETVAL
 
-int
-GET_BASEBG (int rend)
+rend_t
+GET_BASEBG (rend_t rend)
 	CODE:
         RETVAL = GET_BASEBG (rend);
 	OUTPUT:
         RETVAL
 
-int
-SET_FGCOLOR (int rend, int new_color)
+rend_t
+SET_FGCOLOR (rend_t rend, int new_color)
 	CODE:
         RETVAL = SET_FGCOLOR (rend, clamp (new_color, 0, TOTAL_COLORS - 1));
 	OUTPUT:
         RETVAL
 
-int
-SET_BGCOLOR (int rend, int new_color)
+rend_t
+SET_BGCOLOR (rend_t rend, int new_color)
 	CODE:
         RETVAL = SET_BGCOLOR (rend, clamp (new_color, 0, TOTAL_COLORS - 1));
 	OUTPUT:
         RETVAL
 
-int
-GET_CUSTOM (int rend)
+rend_t
+GET_CUSTOM (rend_t rend)
 	CODE:
         RETVAL = (rend & RS_customMask) >> RS_customShift;
 	OUTPUT:
         RETVAL
 
-int
-SET_CUSTOM (int rend, int new_value)
+rend_t
+SET_CUSTOM (rend_t rend, int new_value)
 	CODE:
 {
         if (!IN_RANGE_EXC (new_value, 0, RS_customCount))
@@ -1515,8 +1527,8 @@ rxvt_term::vt_emask_add (U32 emask)
         THIS->vt_emask_perl |= emask;
         THIS->vt_select_input ();
 
-U32
-rxvt_term::rstyle (U32 new_rstyle = THIS->rstyle)
+rend_t
+rxvt_term::rstyle (rend_t new_rstyle = THIS->rstyle)
 	CODE:
         RETVAL = THIS->rstyle;
         THIS->rstyle = new_rstyle;
@@ -2003,10 +2015,10 @@ rxvt_term::cur_charset ()
         RETVAL
 
 void
-rxvt_term::scr_xor_rect (int beg_row, int beg_col, int end_row, int end_col, U32 rstyle1 = RS_RVid, U32 rstyle2 = RS_RVid | RS_Uline)
+rxvt_term::scr_xor_rect (int beg_row, int beg_col, int end_row, int end_col, rend_t rstyle1 = RS_RVid, rend_t rstyle2 = RS_RVid | RS_Uline)
 
 void
-rxvt_term::scr_xor_span (int beg_row, int beg_col, int end_row, int end_col, U32 rstyle = RS_RVid)
+rxvt_term::scr_xor_span (int beg_row, int beg_col, int end_row, int end_col, rend_t rstyle = RS_RVid)
 
 void
 rxvt_term::scr_bell ()
@@ -2072,7 +2084,7 @@ rxvt_term::cmd_parse (SV *octets)
 }
 
 SV *
-rxvt_term::overlay (int x, int y, int w, int h, int rstyle = OVERLAY_RSTYLE, int border = 2)
+rxvt_term::overlay (int x, int y, int w, int h, rend_t rstyle = OVERLAY_RSTYLE, int border = 2)
 	CODE:
 {
         overlay *o = new overlay (THIS, x, y, w, h, rstyle, border);
